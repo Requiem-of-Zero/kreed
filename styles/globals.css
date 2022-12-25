@@ -26,7 +26,5 @@
 }
 
 @layer utilities {
-  .splide__arrow {
-    @apply bg-white
-  }
+
 }
