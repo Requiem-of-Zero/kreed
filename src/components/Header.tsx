@@ -35,6 +35,7 @@ const Header = () => {
           src="https://drive.google.com/file/d/15wuwMyvhZfl_X-FD256TcbWlsYoA2gVj/preview"
           width="100"
           height="100"
+          className='cursor-pointer object-contain'
         ></iframe>
         <ul className="hidden space-x-4 md:flex">
           <li className="header__link">Home</li>
