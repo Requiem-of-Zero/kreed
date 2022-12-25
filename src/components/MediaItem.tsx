@@ -3,6 +3,7 @@ import { Movie } from "../../typings";
 
 interface Props {
   movie: Movie;
+  // Movie | DocumentData
 }
 
 const MediaItem = ({ movie }: Props) => {
