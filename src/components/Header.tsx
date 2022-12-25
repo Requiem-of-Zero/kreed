@@ -45,7 +45,7 @@ const Header = () => {
         <BellIcon className="h-6 w-6 sm:inline" />
         <Link href="/account">
           <Image
-            src="https://rb.gy/g1pwyx"
+            src=""
             width={30}
             height={30}
             className="cursor-pointer rounded"

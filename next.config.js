@@ -2,7 +2,6 @@
 module.exports = {
   images: {
     domains: [
-      "rb.gy",
       "image.tmdb.org",
       "https://lh3.googleusercontent.com/",
     ],
