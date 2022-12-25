@@ -1,31 +1,32 @@
-import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import logo from "../../public/static/images/kreed_logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 0){
+      if (window.scrollY > 0) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll)
+    };
+    window.addEventListener("scroll", handleScroll);
 
-    return() => {
-      window.removeEventListener('scroll', handleScroll)     
-    }
-},[])
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
-          src="https://drive.google.com/file/d/15wuwMyvhZfl_X-FD256TcbWlsYoA2gVj/view?usp=share_link"
+          src={logo}
           width={100}
           height={100}
           className="cursor-pointer object-contain"
@@ -55,6 +56,6 @@ const Header = () => {
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;
