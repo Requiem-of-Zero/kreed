@@ -24,3 +24,9 @@
     md:text-xl;
   }
 }
+
+@layer utilities {
+  .splide__arrow {
+    @apply bg-white
+  }
+}
