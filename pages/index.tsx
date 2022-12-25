@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Banner from "../src/components/Banner";
-import Header from "../src/components/Header";
-import MediaRows from "../src/components/MediaRow";
+import Banner from "../src/Components/Banner";
+import Header from "../src/Components/Header";
+import MediaRows from "../src/Components/MediaRow";
 import { Movie } from "../typings";
 import requests from "../utils/requests";
 
