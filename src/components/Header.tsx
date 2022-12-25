@@ -25,7 +25,7 @@ const Header = () => {
     <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
-          src="/../public/static/images/kreed_logo.png"
+          src="https://drive.google.com/file/d/15wuwMyvhZfl_X-FD256TcbWlsYoA2gVj/view?usp=share_link"
           width={100}
           height={100}
           className="cursor-pointer object-contain"
