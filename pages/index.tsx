@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Banner from "../src/components/Banner";
 import Header from "../src/components/Header";
+import MediaRows from "../src/components/MediaRow";
 import { Movie } from "../typings";
 import requests from "../utils/requests";
 
@@ -24,7 +25,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchRomanceMovies.url).then((res) => res.json()),
     fetch(requests.fetchDocumentaries.url).then((res) => res.json()),
   ]);
-
+  
   return {
     props: {
       netflixOriginals: netflixOriginals.results,
@@ -60,7 +61,6 @@ const Home = ({
   romanceMovies,
   documentaries,
 }: Props) => {
-  console.log(netflixOriginals);
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
@@ -70,7 +70,16 @@ const Home = ({
       <Header />
       <main>
         <Banner netflixOriginals={netflixOriginals} />
-        <section>{/* Rows */}</section>
+        <section className="absolute md:space-y-24 pl-10 md:pt-40">
+          <MediaRows title="Trending Now" movies={trendingNow}/>
+          <MediaRows title="Top Rated" movies={topRated}/>
+          <MediaRows title="Action Thrillers" movies={actionMovies}/>
+          {/* My Watchlist Component */}
+          <MediaRows title="Comedies" movies={comedyMovies}/>
+          <MediaRows title="Horror Movies" movies={horrorMovies}/>
+          <MediaRows title="Romance Movies" movies={romanceMovies}/>
+          <MediaRows title="Documentaries" movies={documentaries}/>
+        </section>
       </main>
       {/* Modal */}
     </div>

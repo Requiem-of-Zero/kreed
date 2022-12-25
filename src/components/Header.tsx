@@ -26,8 +26,8 @@ const Header = () => {
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
           src="/../public/kreed_logo.png"
-          width={125}
-          height={125}
+          width={100}
+          height={100}
           className="cursor-pointer object-contain"
           alt="kreed homepage logo"
         />
