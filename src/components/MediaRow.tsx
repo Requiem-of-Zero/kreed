@@ -22,12 +22,13 @@ const MediaRows = ({ title, movies }: Props) => {
         direction === "prev"
           ? scrollLeft - clientWidth
           : scrollLeft + clientWidth;
-
+      console.log(scrollLeft)
+      console.log(clientWidth)
       rowRef.current.scrollTo({left: scrollTo, behavior: "smooth"})
     }
   };
   return (
-    <div>
+    <div className='w-[100vw]'>
       <h2 className="w-60 pl-10 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl">
         {title}
       </h2>
