@@ -28,8 +28,8 @@ const MediaRows = ({ title, movies }: Props) => {
     }
   };
   return (
-    <div className='w-[100vw]'>
-      <h2 className="w-60 pl-10 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl">
+    <div className="w-[100vw]">
+      <h2 className="w-60 pl-10 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 text-shadow-md hover:text-white md:text-2xl">
         {title}
       </h2>
       <Splide
@@ -47,7 +47,9 @@ const MediaRows = ({ title, movies }: Props) => {
       >
         <ChevronLeftIcon
           onClick={() => handleClick("prev")}
-          className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${!isMoved && `hidden`}`}
+          className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
+            !isMoved && `hidden`
+          }`}
         />
         <div
           ref={rowRef}
