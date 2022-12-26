@@ -16,7 +16,10 @@ const MediaItem = ({ movie }: Props) => {
         alt="movie thumbnail"
         className="rounded-sm object-cover md:rounded"
         fill
-        placeholder='blur'
+        placeholder="blur"
+        blurDataURL={`https://image.tmdb.org/t/p/w500${
+          movie.backdrop_path || movie.poster_path
+        }`}
       />
     </div>
   );
