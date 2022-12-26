@@ -19,7 +19,7 @@ const Banner = ({ netflixOriginals }: Props) => {
   }, [netflixOriginals]);
 
   return (
-    <div className="relative flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
+    <div className="relative flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end">
       <div className="z-0 absolute top-0 left-0 h-[50vh] lg:h-[95vh] w-screen select-none">
         <Image
           src={`${IMAGE_BASE_URL}/${
@@ -27,6 +27,9 @@ const Banner = ({ netflixOriginals }: Props) => {
           }`}
           object-fit="contain"
           fill
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           alt="featured backdrop"
         />
       </div>

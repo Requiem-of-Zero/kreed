@@ -57,8 +57,8 @@ const MediaRows = ({ title, movies }: Props) => {
         >
           {movies.map((movie, i) => {
             return (
-              <SplideSlide>
-                <MediaItem key={`media_item-${i}`} movie={movie} />
+              <SplideSlide key={`media_item-${i}`}>
+                <MediaItem movie={movie} />
               </SplideSlide>
             );
           })}
