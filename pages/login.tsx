@@ -27,7 +27,6 @@ const Login = () => {
     }
   };
 
-  console.log(errors);
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>

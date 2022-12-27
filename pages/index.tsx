@@ -1,9 +1,11 @@
 import Head from "next/head";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
 import useAuth from "../hooks/useAuth";
 import Banner from "../src/components/Banner";
 import Header from "../src/components/Header";
 import MediaRows from "../src/components/MediaRow";
+import Modal from "../src/components/Modal";
 import { Movie } from "../typings";
 import requests from "../utils/requests";
 
@@ -64,9 +66,9 @@ const Home = ({
   documentaries,
 }: Props) => {
   const { logout, loading } = useAuth();
-  // const showModal = useRecoilValue();
-  
-  if(loading) return null;
+  const [showModal, setShowModal] = useRecoilState(modalState);
+
+  if (loading) return null;
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
@@ -88,7 +90,7 @@ const Home = ({
           <MediaRows title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {showModal && <Modal/>}
+      {showModal && <Modal />}
     </div>
   );
 };
