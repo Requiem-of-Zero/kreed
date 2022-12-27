@@ -1,7 +1,9 @@
 import {
+  HandThumbUpIcon,
   PlusIcon,
+  SpeakerWaveIcon,
+  SpeakerXMarkIcon,
   XMarkIcon,
-  HandThumbUpIcon
 } from "@heroicons/react/24/outline";
 import MuiModal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
@@ -62,7 +64,10 @@ const Modal = () => {
         </button>
         <div className="relative pt-[56.25%]">
           <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
+            url={
+              `https://www.youtube.com/watch?v=${trailer}` ||
+              `https://www.youtube.com/watch?v=p2dKdvLXksQ`
+            }
             width="100%"
             height="100%"
             style={{ position: "absolute", top: "0", left: "0" }}
@@ -82,6 +87,46 @@ const Modal = () => {
               <button className="modalBtn">
                 <HandThumbUpIcon className="h-7 w-7" />
               </button>
+            </div>
+            <button className="modalBtn" onClick={() => setMuted(!muted)}>
+              {muted ? (
+                <SpeakerXMarkIcon className="h-6 w-6" />
+              ) : (
+                <SpeakerWaveIcon className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+        <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
+          <div className="space-y-6 text-lg">
+            <div className="flex items-center space-x-2 text-sm">
+              <p className="font-semibold text-green-400">
+                {featuredMovie!.vote_average * 10}% Match
+              </p>
+              <p className="font-light">
+                {featuredMovie?.release_date || featuredMovie?.first_air_date}
+              </p>
+              <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
+                HD
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
+              <p className="w-5/6">{featuredMovie?.overview}</p>
+              <div className="flex flex-col space-y-3 text-sm">
+                <div>
+                  <span className="text-[gray]">Genres: </span>
+                  {genres.map((genre) => genre.name).join(", ")}
+                </div>
+                <div>
+                  <span className="text-[gray]">Original Language: </span>
+                  {featuredMovie?.original_language.toUpperCase()}
+                </div>
+                <div>
+                  <span className="text-[gray]">Total votes: </span>
+                  {featuredMovie?.vote_count}
+                </div>
+              </div>
             </div>
           </div>
         </div>
