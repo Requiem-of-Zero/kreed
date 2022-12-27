@@ -89,7 +89,7 @@ const Login = () => {
           Sign In
         </button>
         <div className="text-[gray]">
-          New to Netflix?{" "}
+          New to Kreed?{" "}
           <button
             type="submit"
             className="text-white hover:underline"
