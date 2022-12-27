@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [initialLoad, setInitialLoad] = useState(true);
   const router = useRouter();
 
+// This persists the user to be logged in or logged out
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -45,6 +46,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(user);
         setLoading(false);
       } else {
+        // Logged Out
         setUser(user);
         setLoading(true);
         router.push("/login");
@@ -99,6 +101,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
   };
 
+  // Memoizes the value for optimization
   const memoedVal = useMemo(
     () => ({
       user,

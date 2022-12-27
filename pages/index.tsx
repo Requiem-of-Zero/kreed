@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useRecoilValue } from "recoil";
+import useAuth from "../hooks/useAuth";
 import Banner from "../src/components/Banner";
 import Header from "../src/components/Header";
 import MediaRows from "../src/components/MediaRow";
@@ -25,7 +27,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchRomanceMovies.url).then((res) => res.json()),
     fetch(requests.fetchDocumentaries.url).then((res) => res.json()),
   ]);
-  
+
   return {
     props: {
       netflixOriginals: netflixOriginals.results,
@@ -61,6 +63,11 @@ const Home = ({
   romanceMovies,
   documentaries,
 }: Props) => {
+  const { logout, loading } = useAuth();
+  // const showModal = useRecoilValue();
+  
+  if(loading) return null;
+
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
@@ -71,17 +78,17 @@ const Home = ({
       <main>
         <Banner netflixOriginals={netflixOriginals} />
         <section className="absolute md:space-y-24 md:pt-40">
-          <MediaRows title="Trending Now" movies={trendingNow}/>
-          <MediaRows title="Top Rated" movies={topRated}/>
-          <MediaRows title="Action Thrillers" movies={actionMovies}/>
+          <MediaRows title="Trending Now" movies={trendingNow} />
+          <MediaRows title="Top Rated" movies={topRated} />
+          <MediaRows title="Action Thrillers" movies={actionMovies} />
           {/* My Watchlist Component */}
-          <MediaRows title="Comedies" movies={comedyMovies}/>
-          <MediaRows title="Horror Movies" movies={horrorMovies}/>
-          <MediaRows title="Romance Movies" movies={romanceMovies}/>
-          <MediaRows title="Documentaries" movies={documentaries}/>
+          <MediaRows title="Comedies" movies={comedyMovies} />
+          <MediaRows title="Horror Movies" movies={horrorMovies} />
+          <MediaRows title="Romance Movies" movies={romanceMovies} />
+          <MediaRows title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {/* Modal */}
+      {showModal && <Modal/>}
     </div>
   );
 };
