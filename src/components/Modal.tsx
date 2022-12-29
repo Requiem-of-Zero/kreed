@@ -22,9 +22,9 @@ const Modal = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [muted, setMuted] = useState(false);
   const { user } = useAuth();
-
   const [comment, setComment] = useState({
     id: 0,
+    authorName: user?.email,
     authorId: user?.uid,
     movieId: featuredMovie?.id,
     content: "",
@@ -34,7 +34,6 @@ const Modal = () => {
 
   useEffect(() => {
     if (!featuredMovie) return;
-
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -68,6 +67,7 @@ const Modal = () => {
       }).then(() => {
         if (data.id) {
           setComment({
+            authorName: user?.email,
             authorId: user?.uid,
             movieId: featuredMovie?.id,
             content: "",
@@ -76,6 +76,7 @@ const Modal = () => {
           refreshData();
         } else {
           setComment({
+            authorName: user?.email,
             authorId: user?.uid,
             movieId: featuredMovie?.id,
             content: "",
@@ -185,21 +186,29 @@ const Modal = () => {
                 </div>
               </div>
             </div>
+            <div className="comments">
+              <form className="comments_form">
+                <label htmlFor="content">Comment</label>
+                <textarea
+                  name="content"
+                  value={comment.content}
+                  placeholder="Comment nig"
+                  onChange={(e) => {
+                    setComment({ ...comment, content: e.target.value });
+                  }}
+                  className="text-black"
+                />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit(comment);
+                  }}
+                >
+                  Add Comment
+                </button>
+              </form>
+            </div>
           </div>
-
-          <form className="comments_form">
-            <label htmlFor="content">Comment</label>
-            <input
-              type="text"
-              name="content"
-              value="content"
-              placeholder="Comment nig"
-              onChange={(e) =>
-                setComment({ ...comment, content: e.target.value })
-              }
-            />
-            <button onClick={() => handleSubmit(comment)}>Add Comment</button>
-          </form>
         </div>
       </>
     </MuiModal>

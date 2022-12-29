@@ -1,3 +1,4 @@
+import User from 'firebase/auth'
 export interface Genre {
   id: number;
   name: string;
@@ -24,7 +25,8 @@ export interface Movie {
 
 export interface Comment {
   id: number;
-  authorId: string;
+  authorName: User;
+  authorId: User;
   movieId: number;
   content: string;
 }
