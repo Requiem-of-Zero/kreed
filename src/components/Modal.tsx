@@ -189,7 +189,7 @@ const Modal = () => {
               </div>
             </div>
             <div className="comments_section">
-              <MovieComments movieId={featuredMovie?.id} />
+              {/* <MovieComments movieId={featuredMovie?.id} /> */}
               <form className="comments_form flex justify-center">
                 <textarea
                   name="content"
