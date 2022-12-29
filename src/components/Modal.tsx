@@ -14,6 +14,7 @@ import { useRecoilState } from "recoil";
 import { modalState, movieState } from "../../atoms/modalAtom";
 import useAuth from "../../hooks/useAuth";
 import { Comment, Element, Genre } from "../../typings";
+import MovieComments from "./MovieComments";
 
 const Modal = () => {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -188,6 +189,7 @@ const Modal = () => {
               </div>
             </div>
             <div className="comments_section">
+              <MovieComments movieId={featuredMovie?.id} />
               <form className="comments_form flex justify-center">
                 <textarea
                   name="content"

@@ -27,7 +27,7 @@ export interface Comment {
   id: number;
   authorName: User;
   authorId: User;
-  movieId: number;
+  movieId: string;
   content: string;
 }
 
