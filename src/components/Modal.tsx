@@ -34,6 +34,7 @@ const Modal = () => {
 
   useEffect(() => {
     if (!featuredMovie) return;
+  
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -159,7 +160,7 @@ const Modal = () => {
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">
-                {featuredMovie!.vote_average * 10}% Match
+                {Math.floor(featuredMovie!.vote_average * 10)}% Match
               </p>
               <p className="font-light">
                 {featuredMovie?.release_date || featuredMovie?.first_air_date}
@@ -186,25 +187,25 @@ const Modal = () => {
                 </div>
               </div>
             </div>
-            <div className="comments">
-              <form className="comments_form">
-                <label htmlFor="content">Comment</label>
+            <div className="comments_section">
+              <form className="comments_form flex justify-center">
                 <textarea
                   name="content"
                   value={comment.content}
-                  placeholder="Comment nig"
+                  placeholder="Add to the discussion"
                   onChange={(e) => {
                     setComment({ ...comment, content: e.target.value });
                   }}
-                  className="text-black"
+                  className="text-black text-sm w-[60%] px-2 py-2 rounded-l-md"
                 />
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     handleSubmit(comment);
                   }}
+                  className='text-sm bg-red-700 rounded-r-md py-2 px-4 transition duration-300 hover:bg-blue-700 hover:text-black'
                 >
-                  Add Comment
+                  Comment
                 </button>
               </form>
             </div>

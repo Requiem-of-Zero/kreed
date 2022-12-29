@@ -97,7 +97,7 @@ const Login = () => {
             signIn("hello2@hello.com", "abc123");
           }}
         >
-          Sign In
+          Demo Log In
         </button>
         <div className="text-[gray]">
           New to Kreed?{" "}
