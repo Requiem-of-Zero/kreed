@@ -10,7 +10,7 @@ export default async function handler(
   try {
     const data = await prisma.comment.findMany({
       where: {
-        movieId = movieId,
+        movieId: movieId,
       },
     });
     res.status(200).json(data);
