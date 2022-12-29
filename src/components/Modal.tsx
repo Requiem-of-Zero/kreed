@@ -6,12 +6,14 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import MuiModal from "@mui/material/Modal";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player/lazy";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "../../atoms/modalAtom";
-import { Element, Genre, Movie } from "../../typings";
+import useAuth from "../../hooks/useAuth";
+import { Comment, Element, Genre } from "../../typings";
 
 const Modal = () => {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -19,6 +21,16 @@ const Modal = () => {
   const [trailer, setTrailer] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
   const [muted, setMuted] = useState(false);
+  const { user } = useAuth();
+
+  const [comment, setComment] = useState({
+    id: 0,
+    authorId: user?.uid,
+    movieId: featuredMovie?.id,
+    content: "",
+  });
+
+  const router = useRouter();
 
   useEffect(() => {
     if (!featuredMovie) return;
@@ -44,6 +56,50 @@ const Modal = () => {
     }
     fetchMovie();
   }, [featuredMovie]);
+
+  async function createComment(data: Comment) {
+    try {
+      fetch("http://localhost:3000/api/createComment", {
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      }).then(() => {
+        if (data.id) {
+          setComment({
+            authorId: user?.uid,
+            movieId: featuredMovie?.id,
+            content: "",
+            id: 0,
+          });
+          refreshData();
+        } else {
+          setComment({
+            authorId: user?.uid,
+            movieId: featuredMovie?.id,
+            content: "",
+            id: 0,
+          });
+          refreshData();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleSubmit = async (data: Comment) => {
+    try {
+      createComment(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
 
   const handleClose = () => {
     setShowModal(false);
@@ -97,6 +153,7 @@ const Modal = () => {
             </button>
           </div>
         </div>
+
         <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
@@ -129,6 +186,20 @@ const Modal = () => {
               </div>
             </div>
           </div>
+
+          <form className="comments_form">
+            <label htmlFor="content">Comment</label>
+            <input
+              type="text"
+              name="content"
+              value="content"
+              placeholder="Comment nig"
+              onChange={(e) =>
+                setComment({ ...comment, content: e.target.value })
+              }
+            />
+            <button onClick={() => handleSubmit(comment)}>Add Comment</button>
+          </form>
         </div>
       </>
     </MuiModal>

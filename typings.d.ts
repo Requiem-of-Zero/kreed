@@ -22,6 +22,13 @@ export interface Movie {
   vote_count: number;
 }
 
+export interface Comment {
+  id: number;
+  authorId: string;
+  movieId: number;
+  content: string;
+}
+
 export interface Element {
   type:
     | "Bloopers"

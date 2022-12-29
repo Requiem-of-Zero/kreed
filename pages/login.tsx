@@ -14,6 +14,7 @@ interface Inputs {
 const Login = () => {
   const [login, setLogin] = useState(false);
   const { signIn, signUp } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -82,9 +83,19 @@ const Login = () => {
           </label>
         </div>
         <button
-          type="submit"
+          type='submit'
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
-          onClick={() => setLogin(true)}
+          onClick={() => {
+            setLogin(true)
+          }}
+        >
+          Sign In
+        </button>
+        <button
+          className="w-full rounded bg-[#e50914] py-3 font-semibold"
+          onClick={() => {
+            signIn("hello2@hello.com", "abc123");
+          }}
         >
           Sign In
         </button>
