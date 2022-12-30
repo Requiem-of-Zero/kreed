@@ -11,63 +11,62 @@ import requests from "../utils/requests";
 
 export const getServerSideProps = async () => {
   const [
-    netflixOriginals,
-    trendingNow,
-    topRated,
-    actionMovies,
-    comedyMovies,
-    horrorMovies,
-    romanceMovies,
-    documentaries,
+    actionShows,
+    animationShows,
+    comedyShows,
+    realityShows,
+    dramaShows,
+    documentaryShows,
+    kidsShows,
+    fantansyShows,
   ] = await Promise.all([
-    fetch(requests.fetchNetflixOriginals.url).then((res) => res.json()),
-    fetch(requests.fetchTrending.url).then((res) => res.json()),
-    fetch(requests.fetchTopRated.url).then((res) => res.json()),
-    fetch(requests.fetchActionMovies.url).then((res) => res.json()),
-    fetch(requests.fetchComedyMovies.url).then((res) => res.json()),
-    fetch(requests.fetchHorrorMovies.url).then((res) => res.json()),
-    fetch(requests.fetchRomanceMovies.url).then((res) => res.json()),
-    fetch(requests.fetchDocumentaries.url).then((res) => res.json()),
+    fetch(requests.fetchActionTVShows.url).then((res) => res.json()),
+    fetch(requests.fetchAnimationTVShows.url).then((res) => res.json()),
+    fetch(requests.fetchComedyTVShows.url).then((res) => res.json()),
+    fetch(requests.fetchRealityTVShows.url).then((res) => res.json()),
+    fetch(requests.fetchDramaTVShows.url).then((res) => res.json()),
+    fetch(requests.fetchDocuSeries.url).then((res) => res.json()),
+    fetch(requests.fetchKidsShows.url).then((res) => res.json()),
+    fetch(requests.fetchFantasyShows.url).then((res) => res.json()),
   ]);
 
   return {
     props: {
-      netflixOriginals: netflixOriginals.results,
-      trendingNow: trendingNow.results,
-      topRated: topRated.results,
-      actionMovies: actionMovies.results,
-      comedyMovies: comedyMovies.results,
-      horrorMovies: horrorMovies.results,
-      romanceMovies: romanceMovies.results,
-      documentaries: documentaries.results,
+      actionShows: actionShows.results,
+      animationShows: animationShows.results,
+      comedyShows: comedyShows.results,
+      realityShows: realityShows.results,
+      dramaShows: dramaShows.results,
+      documentaryShows: documentaryShows.results,
+      kidsShows: kidsShows.results,
+      fantansyShows: fantansyShows.results,
     },
   };
 };
 
 interface Props {
-  netflixOriginals: Movie[];
-  trendingNow: Movie[];
-  topRated: Movie[];
-  actionMovies: Movie[];
-  comedyMovies: Movie[];
-  horrorMovies: Movie[];
-  romanceMovies: Movie[];
-  documentaries: Movie[];
+  actionShows: Movie[];
+  animationShows: Movie[];
+  comedyShows: Movie[];
+  realityShows: Movie[];
+  dramaShows: Movie[];
+  documentaryShows: Movie[];
+  kidsShows: Movie[];
+  fantansyShows: Movie[];
 }
 
 const TVShows = ({
-  netflixOriginals,
-  trendingNow,
-  topRated,
-  actionMovies,
-  comedyMovies,
-  horrorMovies,
-  romanceMovies,
-  documentaries,
+  actionShows,
+  animationShows,
+  comedyShows,
+  realityShows,
+  dramaShows,
+  documentaryShows,
+  kidsShows,
+  fantansyShows,
 }: Props) => {
   const { logout, loading } = useAuth();
   const [showModal, setShowModal] = useRecoilState(modalState);
-
   if (loading) return null;
 
   return (
@@ -82,16 +81,16 @@ const TVShows = ({
       </Head>
       <Header />
       <main>
-        <Banner netflixOriginals={netflixOriginals} />
+        <Banner netflixOriginals={actionShows} />
         <section className="absolute md:space-y-24 md:pt-40">
-          <MediaRows title="Trending Now" movies={trendingNow} />
-          <MediaRows title="Top Rated" movies={topRated} />
-          <MediaRows title="Action Thrillers" movies={actionMovies} />
+          <MediaRows title="Animation" movies={animationShows} />
+          <MediaRows title="Comedy" movies={comedyShows} />
+          <MediaRows title="Action & Adventure" movies={actionShows} />
           {/* My Watchlist Component */}
-          <MediaRows title="Comedies" movies={comedyMovies} />
-          <MediaRows title="Horror Movies" movies={horrorMovies} />
-          <MediaRows title="Romance Movies" movies={romanceMovies} />
-          <MediaRows title="Documentaries" movies={documentaries} />
+          <MediaRows title="Reality" movies={realityShows} />
+          <MediaRows title="Drama" movies={dramaShows} />
+          <MediaRows title="Documentaries" movies={documentaryShows} />
+          <MediaRows title="Sci-Fi & Fantasy" movies={fantansyShows} />
         </section>
       </main>
       {showModal && <Modal />}

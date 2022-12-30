@@ -34,6 +34,37 @@ const requests = {
     title: "Documentaries",
     url: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=99`,
   },
+  fetchActionTVShows: {
+    title: "Action & Adventure",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10759`,
+  },
+  fetchAnimationTVShows: {
+    title: "Animated",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=16`,
+  },
+  fetchComedyTVShows: {
+    title: "Comedy",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=35`,
+  },
+  fetchRealityTVShows: {
+    title: "Reality",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10764`,
+  },
+  fetchDramaTVShows: {
+    title: "Drama",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=18`,
+  },
+  fetchDocuSeries: {
+    title: "DocuSeries",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=99`,
+  },
+  fetchKidsShows: {
+    title: "Kids",
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10762`,
+  },
+  fetchFantasyShows: {
+    title: 'Sci-Fi & Fantasy',
+    url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10765`,
+  }
 };
-
 export default requests;
