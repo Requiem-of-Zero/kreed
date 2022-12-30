@@ -12,6 +12,7 @@ import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player/lazy";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "../../atoms/modalAtom";
+import { IMAGE_BASE_URL } from "../../constants/media";
 import useAuth from "../../hooks/useAuth";
 import { Comment, Element, Genre } from "../../typings";
 import MovieComments from "./MovieComments";
@@ -35,7 +36,7 @@ const Modal = () => {
 
   useEffect(() => {
     if (!featuredMovie) return;
-  
+
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -100,40 +101,47 @@ const Modal = () => {
     }
   };
 
+// Refreshes the data by using router to push the same path to the client
   const refreshData = () => {
     router.replace(router.asPath);
   };
-
+// Sets the modal state to false to close the modal
   const handleClose = () => {
     setShowModal(false);
   };
 
   return (
+    // Material UI Modal Container
     <MuiModal
       open={showModal}
       onClose={handleClose}
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
       <>
+      {/* Close Modal Button */}
         <button
           onClick={handleClose}
           className="modalBtn absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818]/60"
         >
           <XMarkIcon className="h-6 w-6" />
         </button>
+        {/* React Player Container */}
         <div className="relative pt-[56.25%]">
           <ReactPlayer
             url={
               `https://www.youtube.com/watch?v=${trailer}` ||
               `https://www.youtube.com/watch?v=p2dKdvLXksQ`
             }
+            light={`${IMAGE_BASE_URL}/${
+              featuredMovie?.backdrop_path || featuredMovie?.poster_path
+            }`}
             width="100%"
             height="100%"
             style={{ position: "absolute", top: "0", left: "0" }}
             playing
             muted={muted}
           />
-
+          {/* Modal Player Toggle Options */}
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
               <button className="flex items-center gap-x-2 rounded bg-white text-black px-8 text-xl font-bold transition hover:bg-[#e6e6e6]">
@@ -156,7 +164,7 @@ const Modal = () => {
             </button>
           </div>
         </div>
-
+      {/* Modal Left Side Media Description and Info */}
         <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
@@ -170,7 +178,7 @@ const Modal = () => {
                 HD
               </div>
             </div>
-
+            {/* Modal Right Side Media Description and Info */}
             <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
               <p className="w-5/6">{featuredMovie?.overview}</p>
               <div className="flex flex-col space-y-3 text-sm">
@@ -190,6 +198,7 @@ const Modal = () => {
             </div>
             <div className="comments_section">
               {/* <MovieComments movieId={featuredMovie?.id} /> */}
+              {/* Comment Form for Media */}
               <form className="comments_form flex justify-center">
                 <textarea
                   name="content"
@@ -205,7 +214,7 @@ const Modal = () => {
                     e.preventDefault();
                     handleSubmit(comment);
                   }}
-                  className='text-sm bg-red-700 rounded-r-md py-2 px-4 transition duration-300 hover:bg-blue-700 hover:text-black'
+                  className="text-sm bg-red-700 rounded-r-md py-2 px-4 transition duration-300 hover:bg-blue-700 hover:text-black"
                 >
                   Comment
                 </button>
