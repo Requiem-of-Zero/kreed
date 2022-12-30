@@ -33,7 +33,6 @@ const Modal = () => {
   });
 
   const router = useRouter();
-
   useEffect(() => {
     if (!featuredMovie) return;
 
@@ -68,6 +67,7 @@ const Modal = () => {
         },
         method: "POST",
       }).then(() => {
+
         if (data.id) {
           setComment({
             authorName: user?.email,
@@ -109,7 +109,6 @@ const Modal = () => {
   const handleClose = () => {
     setShowModal(false);
   };
-
   return (
     // Material UI Modal Container
     <MuiModal
@@ -197,7 +196,7 @@ const Modal = () => {
               </div>
             </div>
             <div className="comments_section">
-              {/* <MovieComments movieId={featuredMovie?.id} /> */}
+              <MovieComments />
               {/* Comment Form for Media */}
               <form className="comments_form flex justify-center">
                 <textarea

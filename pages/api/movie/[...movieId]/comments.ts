@@ -8,10 +8,12 @@ export default async function handler(
   const { movieId } = req.query;
 
   try {
-    const data = await prisma.comment.findMany({
-      
+    await prisma.comment.findMany({
+      where: {
+        movieId: movieId,
+      },
     });
-    res.status(200).json(data);
+    res.status(200).json({ message: "Comment Created" });
   } catch (error) {
     console.log(error);
   }

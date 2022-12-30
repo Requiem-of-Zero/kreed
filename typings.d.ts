@@ -27,8 +27,12 @@ export interface Comment {
   id: number;
   authorName: User;
   authorId: User;
-  movieId: string;
+  movieId: number;
   content: string;
+}
+
+export interface Comments{
+  comments: Comment[]
 }
 
 export interface Element {
