@@ -31,7 +31,7 @@ export interface Comment {
   content: string;
 }
 
-export interface Comments{
+export interface Comments {
   comments: Comment[]
 }
 

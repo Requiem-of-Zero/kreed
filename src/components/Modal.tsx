@@ -14,7 +14,7 @@ import { useRecoilState } from "recoil";
 import { modalState, movieState } from "../../atoms/modalAtom";
 import { IMAGE_BASE_URL } from "../../constants/media";
 import useAuth from "../../hooks/useAuth";
-import { Comment, Element, Genre } from "../../typings";
+import { Comment, Element, Genre, Comments } from "../../typings";
 import MovieComments from "./MovieComments";
 
 const Modal = () => {
@@ -196,7 +196,7 @@ const Modal = () => {
               </div>
             </div>
             <div className="comments_section">
-              <MovieComments />
+              {/* <MovieComments comments={comments}/> */}
               {/* Comment Form for Media */}
               <form className="comments_form flex justify-center">
                 <textarea

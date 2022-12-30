@@ -6,7 +6,7 @@ import Banner from "../src/components/Banner";
 import Header from "../src/components/Header";
 import MediaRows from "../src/components/MediaRow";
 import Modal from "../src/components/Modal";
-import { Movie } from "../typings";
+import { Comment, Movie } from "../typings";
 import requests from "../utils/requests";
 
 export const getServerSideProps = async () => {
@@ -53,6 +53,7 @@ interface Props {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
+  commentsList: Comment[];
 }
 
 const Home = ({
@@ -64,6 +65,7 @@ const Home = ({
   horrorMovies,
   romanceMovies,
   documentaries,
+  commentsList
 }: Props) => {
   const { logout, loading } = useAuth();
   const [showModal, setShowModal] = useRecoilState(modalState);

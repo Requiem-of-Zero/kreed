@@ -7,7 +7,7 @@ interface Props {
 
 const MovieComments = ({comments}: Props) => {
   const [movieComments, setComments] = useState<Comment[]>([]);
-
+  console.log(comments);
   // useEffect(() => {
   //   if (!comments.length) return;
 
